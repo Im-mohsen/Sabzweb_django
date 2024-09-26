@@ -10,7 +10,27 @@
         <div class="description_post">
             <p>{{ post.description |linebreaks }}</p>
         </div>
-
+        <div>
+            {% with  comments.count as cm_count%}
+                {{ cm_count }} comment{{ cm_count |pluralize }}
+            {% endwith %}
+        </div>
+        <div>
+            {% for comment in comments %}
+                {{ comment.name }}
+                <br>
+                {{ comment.created |jformat:"%Y/%m/%d"}}
+                <br>
+                {{ comment.body |linebreaks }}
+            {% empty %}
+                کامنتی وجود ندارد!!
+            {% endfor %}
+        </div>
+        <form method="post" action="{% url 'blog:post_comment' post.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="افزودن کامنت">
+        </form>
     </div>
 
 {#    <p>{{ new_date |date:"SHORT_DATETIME_FORMAT" }}</p>#}
