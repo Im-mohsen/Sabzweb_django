@@ -13,13 +13,14 @@ body {
 	background-color: whitesmoke;
 }
 
-h2{
-  width: 350px;
+.partials{
+  width: 250px;
   height: 70px;
-  background-color: #a92424;
-  color: aliceblue;
+  background-color: #fff;
+  color: black;
   text-align: center;
-  border-bottom: 5px solid #c44d1a;
+  border-bottom: 5px solid #1a91c4;
+  border-top: 5px solid #1a91c4;
   margin: 20px auto;
   padding: 10px;
   border-radius: 10px;
@@ -66,14 +67,14 @@ li::before {
 	background: linear-gradient(to right, var(--c1) var(--stop), var(--c2) var(--stop));
 }
 
-h3 {
+.post_list_h3 {
 	display: flex;
 	align-items: baseline;
 	margin: 0 0 1rem;
 	color: rgb(70 70 70);
 }
 
-h3::before {
+.post_list_h3::before {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -108,4 +109,39 @@ h3::before {
 	margin: 0 auto;
 	align-items: center;
 	text-align: center;
+}
+.post_box{
+	width: 80%;
+	background-color: white;
+	align-items: center;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px 7px rgba(0, 0, 0, 0.1);
+}
+.title_post{
+	align-items: center;
+	text-align: left;
+	margin: 0 0 5px 20px;
+}
+.time_post{
+	align-items: center;
+	text-align: left;
+	margin: 0 0 5px 20px;
+}
+.author-title{
+	font-size: medium;
+}
+.description_post{
+	width: 600px;
+	background-color: rgba(0, 255, 255, 0.15);
+	align-items: center;
+	text-align: center;
+	margin: 0 auto;
+	padding: 20px 20px;
+	border-radius: 10px;
+}
+h2{
+	padding: 20px 5px 0 0;
 }

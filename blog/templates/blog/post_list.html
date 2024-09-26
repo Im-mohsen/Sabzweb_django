@@ -5,7 +5,7 @@
     <ol style="--length: {{ posts|length }}" role="list">
         {% for post in posts %}
             <li style="--i: {{ forloop.counter }}">
-                <h3>
+                <h3 class="post_list_h3">
                 <a href="{{ post.get_absolute_url }}">
                 {{ post.title}}
                 </a>
