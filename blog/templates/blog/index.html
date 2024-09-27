@@ -1,0 +1,10 @@
+{% extends "parent/base.html" %}
+{% load blog_tags %}
+
+{% block title %}Index Page{% endblock %}
+{% block content %}
+    <p>آمار</p>
+    <p>تعداد پست: {% total_posts %}</p>
+    <p>تعداد کامنت: {% total_comments %}</p>
+    <p>تاریخ آخرین پست: {% last_post_date %}</p>
+{% endblock %}
