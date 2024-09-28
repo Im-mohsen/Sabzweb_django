@@ -36,5 +36,9 @@ class CommentForm(forms.ModelForm):
         model = Comment
         # exclude = ['post', 'updated', 'created', 'active']
         fields = ['name', 'email', 'body']
+        widgets = {
+            'body': forms.TextInput(attrs={'class': 'body_boxe_form'}),
+            'name': forms.TextInput(attrs={'class': 'boxes_form'}),
+            'email': forms.TextInput(attrs={'class': 'boxes_form'})
 
-
+        }
