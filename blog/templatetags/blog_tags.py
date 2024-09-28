@@ -38,3 +38,12 @@ def latest_posts(count=4):
 @register.filter(name='markdown')
 def to_markdown(text):
     return mark_safe(markdown(text))
+
+
+@register.inclusion_tag("partials/maximum_reading_time.html")
+def max_reading_time(count=3):
+    max_post = Post.published.order_by('-reading_time')[:count]
+    context = {
+        'max_post': max_post
+    }
+    return context
