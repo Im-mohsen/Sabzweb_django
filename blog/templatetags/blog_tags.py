@@ -47,3 +47,11 @@ def max_reading_time(count=3):
         'max_post': max_post
     }
     return context
+
+@register.inclusion_tag("partials/min_reading_time.html")
+def min_reading_time(count=3):
+    min_post = Post.published.order_by('reading_time')[:count]
+    context = {
+        'min_post': min_post
+    }
+    return context
