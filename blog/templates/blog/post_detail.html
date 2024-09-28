@@ -1,6 +1,7 @@
 {% extends "parent/base.html" %}
 {% block title %}Post Detail{% endblock %}
 {% load jformat %}
+{% load blog_tags %}
 {% block content %}
     <div class="post_box">
         <h2>Post detail</h2>
@@ -8,7 +9,7 @@
         <p class="time_post">{{ post.publish |jformat:"%Y/%m/%d-%H:%M" }}</p>
         <hr>
         <div class="description_post">
-            <p>{{ post.description |linebreaks }}</p>
+            <p>{{ post.description |markdown }}</p>
         </div>
         <div>
             {% with  comments.count as cm_count%}
