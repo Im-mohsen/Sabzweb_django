@@ -90,3 +90,18 @@ def post_comment(request, post_id):
         'comment': comment
     }
     return render(request, "forms/comment.html", context)
+
+
+def create_post(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.status = 'DF'
+            post.save()
+            return redirect("blog:ticket")
+    else:
+        form = PostForm()
+    return render(request, "forms/new_post.html"
+                  ,{'form': form})

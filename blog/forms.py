@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import *
 
 
 class TicketForm(forms.Form):
@@ -42,3 +42,9 @@ class CommentForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'boxes_form'})
 
         }
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'description', 'reading_time']

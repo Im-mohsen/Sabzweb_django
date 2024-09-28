@@ -22,7 +22,7 @@ class Post(models.Model):
     # Relations
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_posts", verbose_name="نویسنده")
     # Data fields
-    title = models.CharField(max_length=250, verbose_name="عنوان")
+    title = models.CharField(max_length=250, verbose_name="عنوان", null=True, blank=True)
     description = models.TextField(verbose_name="توضیحات")
     slug = models.SlugField(max_length=250)
     # Date
