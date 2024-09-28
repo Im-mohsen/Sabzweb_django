@@ -117,6 +117,7 @@ li::before {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+	padding-bottom: 10px;
 	border-radius: 10px;
 	box-shadow: 2px 2px 5px 7px rgba(0, 0, 0, 0.1);
 }
@@ -144,4 +145,24 @@ li::before {
 }
 h2{
 	padding: 20px 5px 0 0;
+}
+.comment_box{
+	display: block;
+	position: relative;
+	width: 600px;
+	background-color: rgba(6, 213, 45, 0.36);
+	color: black;
+	align-items: center;
+	text-align: center;
+	margin: 0 auto 20px auto;
+	padding: 20px 20px;
+	border-radius: 10px;
+}
+#comment_title{
+	display: flex;
+	position: absolute;
+}
+.comment_form{
+	align-items: center;
+	text-align: right;
 }
