@@ -9,4 +9,12 @@
     <p>تاریخ آخرین پست: {% last_post_date %}</p>
 
     {% latest_posts 5 %}
+
+    <h3>محبوب ترین پست ها</h3>
+    {% most_popular_posts as pop_posts %}
+    {% for post in pop_posts %}
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}: with {{ post.comments_count }} comment{{ post.comments_count|pluralize }}</a>
+        <br>
+    {% endfor %}
+
 {% endblock %}

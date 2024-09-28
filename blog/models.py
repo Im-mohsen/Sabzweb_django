@@ -29,6 +29,7 @@ class Post(models.Model):
     publish = jmodels.jDateTimeField(default=timezone.now, verbose_name="تاریخ انتشار")
     created = jmodels.jDateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
     updated = jmodels.jDateTimeField(auto_now=True, verbose_name="تاریخ اپدیت")
+    reading_time = models.PositiveIntegerField(verbose_name="زمان مطالعه")
     # Choice fields
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT, verbose_name="وضعیت")
     # Default manager
