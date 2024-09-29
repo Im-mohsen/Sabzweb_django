@@ -48,6 +48,7 @@ def max_reading_time(count=3):
     }
     return context
 
+
 @register.inclusion_tag("partials/min_reading_time.html")
 def min_reading_time(count=3):
     min_post = Post.published.order_by('reading_time')[:count]
@@ -55,3 +56,11 @@ def min_reading_time(count=3):
         'min_post': min_post
     }
     return context
+
+
+@register.filter(name='censor')
+def to_censorship(text):
+    censor_list = ['بیشعور', 'احمق', 'اشغال', 'کصافت', 'بی تربیت', 'خنگ', 'عوضی']
+    for word in censor_list:
+        text = text.replace(word, '*' * len(word))
+    return text

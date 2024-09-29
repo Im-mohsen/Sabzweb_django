@@ -9,7 +9,7 @@
         <p class="time_post">{{ post.publish |jformat:"%Y/%m/%d-%H:%M" }}</p>
         <hr>
         <div class="description_post">
-            <p>{{ post.description |markdown }}</p>
+            <p>{{ post.description |markdown |censor}}</p>
         </div>
         <div>
             {% with  comments.count as cm_count%}
@@ -25,7 +25,7 @@
                     <br>
                 </div>
 
-                {{ comment.body |linebreaks }}
+                {{ comment.body |linebreaks |censor }}
                 <br>
                 <hr>
             {% empty %}
