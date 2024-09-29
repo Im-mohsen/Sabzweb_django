@@ -40,7 +40,6 @@ class CommentForm(forms.ModelForm):
             'body': forms.TextInput(attrs={'class': 'body_boxe_form'}),
             'name': forms.TextInput(attrs={'class': 'boxes_form'}),
             'email': forms.TextInput(attrs={'class': 'boxes_form'})
-
         }
 
 
@@ -48,3 +47,21 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'description', 'reading_time']
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if title:
+            if len(title) < 4:
+                raise forms.ValidationError("نام کوتاه است!!")
+            else:
+                return title
+        else:
+            raise forms.ValidationError("نوشتن عنوان الزامی است!")
+
+    def clean_reading_time(self):
+        reading_time = self.cleaned_data['reading_time']
+
+        if reading_time == 0:
+            raise forms.ValidationError("مقدار زمان مطالعه پست را وارد کنید نمیتواند صفر باشد!!")
+        else:
+            return reading_time

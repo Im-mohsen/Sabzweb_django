@@ -4,7 +4,38 @@
     <h2>ایجاد پست جدید</h2>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+{#        {{ form.as_p }}#}
+        <label for="id_title">عنوان</label>
+        <br>
+        <input type="text" name="title" id="id_title" required
+                {% if form.title.value %} value="{{ form.title.value }}" {% endif %} >
+        <br>
+        <label for="id_description">توضیحات:</label>
+        <br>
+        <textarea name="description" id="id_description" required>
+            {% if form.description.value %} {{ form.description.value }} {% endif %}</textarea>
+        <br>
+        <label for="id_reading_time">زمان مطالعه</label>
+        <br>
+        <input type="number" name="reading_time" min="0" id="id_reading_time" required
+                {% if form.reading_time.value %} value="{{ form.reading_time.value }}" {% endif %}>
+        <br>
         <input type="submit" value="ایجاد پست">
     </form>
+    {% if form.errors%}
+        لطفا خطاهای زیر را اصلاح کنید!!
+        <br>
+        {% for field in form %}
+            {% if field.errors %}
+        	    {% for error in field.errors %}
+        	    	{{ field.label }} : {{ error }}
+                    <br>
+        	    {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if form.non_field_errors %}
+    	{{ form.non_field_errors }}
+    {% endif %}
 {% endblock %}
