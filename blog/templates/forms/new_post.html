@@ -2,7 +2,7 @@
 {% block title %}New Post{% endblock %}
 {% block content %}
     <h2>ایجاد پست جدید</h2>
-    <form>
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="ایجاد پست">

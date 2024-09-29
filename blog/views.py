@@ -100,8 +100,7 @@ def create_post(request):
             post.author = request.user
             post.status = 'DF'
             post.save()
-            return redirect("blog:ticket")
+            return redirect("blog:post_list")
     else:
         form = PostForm()
-    return render(request, "forms/new_post.html"
-                  ,{'form': form})
+    return render(request, "forms/new_post.html", {'form': form})
