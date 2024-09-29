@@ -20,4 +20,13 @@
     {% max_reading_time %}
     <br>
     {% min_reading_time %}
+    <br>
+    <h3 style="font-size: 30px">فعال ترین کاربر</h3>
+    {% most_active_user as mau%}
+    {% for user in mau %}
+    	<p>{{ user }} with {{ user.total_posts }} post{{ user.total_posts |pluralize }}</p>
+    {% endfor %}
+
+
+
 {% endblock %}

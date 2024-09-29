@@ -1,5 +1,5 @@
 from django import template
-from ..models import Post, Comment
+from ..models import *
 from django.db.models import Count
 from markdown import markdown
 from django.utils.safestring import mark_safe
@@ -64,3 +64,7 @@ def to_censorship(text):
     for word in censor_list:
         text = text.replace(word, '*' * len(word))
     return text
+
+@register.simple_tag()
+def most_active_user():
+    return User.objects.annotate(total_posts=Count('user_posts')).order_by('-total_posts')
