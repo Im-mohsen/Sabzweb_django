@@ -1,1 +1,8 @@
 <h2 class="partials">header</h2>
+<form method="get" action=" {% url "blog:post_search" %}">
+    {% csrf_token %}
+    <label>
+        <input type="text" name="query" required placeholder="کلمه مورد نظر را وارد کنید...">
+    </label>
+    <input type="submit" value="جستجو">
+</form>

@@ -5,6 +5,7 @@ from .forms import *
 # from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView, FormView
 from django.views.decorators.http import require_POST
+from django.db.models import Q
 # Create your views here.
 import datetime
 
@@ -104,3 +105,22 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, "forms/new_post.html", {'form': form})
+
+
+def post_search(request):
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(data=request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            # results1 = Post.published.filter(title__icontains=query)
+            # results2 = Post.published.filter(description__icontains=query)
+            # results = results1 | results2
+            results = Post.published.filter(Q(title__icontains=query) | Q(description__icontains=query))
+            print(results)
+    context = {
+        'query': query,
+        'results': results
+    }
+    return render(request, 'blog/search.html', context)

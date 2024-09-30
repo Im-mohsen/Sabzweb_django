@@ -65,3 +65,7 @@ class PostForm(forms.ModelForm):
             raise forms.ValidationError("مقدار زمان مطالعه پست را وارد کنید نمیتواند صفر باشد!!")
         else:
             return reading_time
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField()
