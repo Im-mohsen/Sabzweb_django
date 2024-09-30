@@ -6,6 +6,7 @@ from .forms import *
 from django.views.generic import ListView, DetailView, FormView
 from django.views.decorators.http import require_POST
 from django.db.models import Q
+from django.contrib.postgres.search import SearchVector
 # Create your views here.
 import datetime
 
@@ -114,10 +115,15 @@ def post_search(request):
         form = SearchForm(data=request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
+            # ------------ way 1-------------
             # results1 = Post.published.filter(title__icontains=query)
             # results2 = Post.published.filter(description__icontains=query)
             # results = results1 | results2
-            results = Post.published.filter(Q(title__icontains=query) | Q(description__icontains=query))
+            # ------------ way 2-------------
+            # results = Post.published.filter(Q(title__search=query) | Q(description__search=query))
+            # ------------ way 3-------------
+            results = (Post.published.annotate(search=SearchVector('title', 'description', 'slug'))
+                       .filter(search=query))
             print(results)
     context = {
         'query': query,
