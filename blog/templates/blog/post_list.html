@@ -12,6 +12,7 @@
                 </a>
                 </h3>
                 <p>{{ post.description |truncatewords:5 |censor }}</p>
+                <img src="{{ post.images.first.image_file.url }}" alt="{{ post.images.first.title }}" style="width: 100%">
             </li>
         {% endfor %}
     </ol>
