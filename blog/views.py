@@ -6,7 +6,8 @@ from .forms import *
 from django.views.generic import ListView, DetailView, FormView
 from django.views.decorators.http import require_POST
 from django.db.models import Q
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+# from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.contrib.postgres.search import TrigramSimilarity
 # Create your views here.
 import datetime
 
@@ -115,7 +116,7 @@ def post_search(request):
         form = SearchForm(data=request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            search_query = SearchQuery(query)
+            # search_query = SearchQuery(query)
             # ------------ way 1-------------
             # results1 = Post.published.filter(title__icontains=query)
             # results2 = Post.published.filter(description__icontains=query)
@@ -127,10 +128,19 @@ def post_search(request):
             # results = (Post.published.annotate(search=search_vector, rank=SearchRank(search_vector, search_query))
             #            .filter(search=search_query)).order_by('-rank')
             # ------------ way 4-------------
-            search_vector = (SearchVector('title', weight="A") + SearchVector('description', weight="B")
-                             + SearchVector('slug', weight="D"))
-            results = Post.published.annotate(search=search_vector, rank=SearchRank(search_vector, search_query)). \
-                filter(rank__gte=0.3).order_by('-rank')
+            # search_vector = (SearchVector('title', weight="A") + SearchVector('description', weight="B")
+            #                  + SearchVector('slug', weight="D"))
+            # results = Post.published.annotate(search=search_vector, rank=SearchRank(search_vector, search_query)). \
+            #     filter(rank__gte=0.3).order_by('-rank')
+            # ------------ way 5-------------A
+            # results = Post.published.annotate(similarity=TrigramSimilarity('title', query)).\
+            #     filter(similarity__gt=0.1).order_by('-similarity')
+            # ------------ way 5-------------B
+            results1 = Post.published.annotate(similarity=TrigramSimilarity('title', query)).\
+                filter(similarity__gt=0.1)
+            results2 = Post.published.annotate(similarity=TrigramSimilarity('description', query)).\
+                filter(similarity__gt=0.1)
+            results = (results1 | results2).order_by('-similarity')
     context = {
         'query': query,
         'results': results
