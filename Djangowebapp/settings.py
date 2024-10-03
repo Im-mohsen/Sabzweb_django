@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "blog.apps.BlogConfig",
     'django_jalali',
     'django.contrib.postgres',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

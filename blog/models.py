@@ -53,6 +53,16 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("blog:post_detail", args=[self.id])
 
+    # way number 2 for delete image with posts
+
+    # def delete(self, *args, **kwargs):
+    #     for img in self.images.all():
+    #         storage, path = img.img_file.storage, img.img_file.path
+    #
+    #         storage.delete(path)
+    #
+    #     super().delete(*args, **kwargs)
+
 
 class Ticket(models.Model):
     message = models.TextField(verbose_name="پیام")
