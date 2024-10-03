@@ -133,4 +133,4 @@ class Image(models.Model):
         verbose_name_plural = "تصویر ها"
 
     def __str__(self):
-        return self.title if self.title else "None"
+        return f"title: {self.title}" if self.title else f"image_name: {self.image_file}"
