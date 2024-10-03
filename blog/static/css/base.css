@@ -135,7 +135,7 @@ li::before {
 	font-size: medium;
 }
 .description_post{
-	width: 600px;
+	width: 80%;
 	background-color: rgba(0, 255, 255, 0.15);
 	align-items: center;
 	text-align: center;
@@ -149,7 +149,7 @@ h2{
 .comment_box{
 	display: block;
 	position: relative;
-	width: 600px;
+	width: 80%;
 	background-color: rgba(6, 213, 45, 0.36);
 	color: black;
 	align-items: center;
@@ -217,4 +217,27 @@ h2{
 	width: 15%;
 	height: 25px;
 	border-radius: 3px;
+}
+.images{
+	width: 90%;
+	margin: 0 auto;
+}
+.list_image{
+	display: block;
+	margin: 0 auto;
+}
+.container{
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+	justify-content: space-between;
+	align-items: center;
+	/*flex-wrap: wrap;*/
+	overflow: auto;
+	gap: 10px;
+
+}
+.flex-item{
+	flex:1 1 100%;
+	max-width: 49%;
 }

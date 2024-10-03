@@ -8,9 +8,41 @@
         <h3 class="title_post">{{ post.title}} <span class="author-title">(by {{ post.author }})</span> </h3>
         <p class="time_post">{{ post.publish |jformat:"%Y/%m/%d-%H:%M" }}</p>
         <br>
-        <div>
+{#            <!-- نمایش تصاویر در بخش های مختلف -->#}
+{#        {% if post.images.exists %}#}
+{#            <!-- اولین تصویر -->#}
+{#            <img src="{{ post.images.first.image.url }}" alt="First Image">#}
+{#    #}
+{#            <h3>Author: <i>{{ post.author }}</i></h3>#}
+{#            <br><br>#}
+{#    #}
+{#            <!-- دومین تصویر -->#}
+{#            {% if post.images.count > 2 %}#}
+{#                <img src="{{ post.images.1.image.url }}" alt="Second Image">#}
+{#            {% endif %}#}
+{#    #}
+{#            <h2>Title: {{ post.title }}</h2>#}
+{#            <h3>description:</h3>#}
+{#            <p>{{ post.description | linebreaks }}</p>#}
+{#            <p>{{ post.publish }}</p>#}
+{#    #}
+{#            <!-- سومین تصویر -->#}
+{#            {% if post.images.count > 3 %}#}
+{#                <img src="{{ post.images.2.image.url }}" alt="Third Image">#}
+{#            {% endif %}#}
+{#    #}
+{#            <br>#}
+{#    #}
+{#            <!-- آخرین تصویر -->#}
+{#            {% if post.images.count > 1 %}#}
+{#                <img src="{{ post.images.last.image.url }}" alt="Last Image">#}
+{#            {% endif %}#}
+{#            <br><hr><br>#}
+{#        {% endif %}#}
+
+        <div class="container">
                 {% for img in post.images.all %}
-                    <img src="{{ img.image_file.url }}" alt="{{ img.title }}" style="width: 90%">
+                    <img src="{{ img.image_file.url }}" alt="{{ img.title }}" class="flex-item">
                 {% endfor %}
         </div>
         <div class="description_post">
