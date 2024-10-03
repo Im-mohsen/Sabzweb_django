@@ -140,7 +140,12 @@ def post_search(request):
                 filter(similarity__gt=0.1)
             results2 = Post.published.annotate(similarity=TrigramSimilarity('description', query)).\
                 filter(similarity__gt=0.1)
-            results = (results1 | results2).order_by('-similarity')
+            results3 = Post.published.annotate(similarity=TrigramSimilarity('images__title', query)).\
+                filter(similarity__gt=0.1)
+            results4 = Post.published.annotate(similarity=TrigramSimilarity('images__description', query)).\
+                filter(similarity__gt=0.1)
+            results = (results1 | results2 | results3 | results4).order_by('-similarity')
+
     context = {
         'query': query,
         'results': results
