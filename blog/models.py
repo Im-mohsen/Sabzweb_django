@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
 from django_resized import ResizedImageField
-# from datetime import date
+from datetime import date
 # Managers
 
 
@@ -101,9 +101,13 @@ class Comment(models.Model):
         return f"{self.name}: {self.post}"
 
 
+def date_directory_path(instance, filename):
+    today = date.today().strftime("%B %d, %Y")
+    return f"post_images/{today}/{filename}"
+
 class Image(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="images", verbose_name="پست")
-    image_file = ResizedImageField(upload_to="%Y-%m-%d", size=[600, 340], quality=80, crop=['middle', 'center'], null=True, blank=True)
+    image_file = ResizedImageField(upload_to=date_directory_path, size=[600, 340], quality=80, crop=['middle', 'center'], null=True, blank=True)
     title = models.CharField(max_length=250, verbose_name="عنوان", null=True, blank=True)
     description = models.TextField(verbose_name="توضیحات", null=True, blank=True)
     created = jmodels.jDateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
