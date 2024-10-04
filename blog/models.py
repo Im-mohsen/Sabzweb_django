@@ -68,9 +68,7 @@ class Post(models.Model):
     # def delete(self, *args, **kwargs):
     #     for img in self.images.all():
     #         storage, path = img.img_file.storage, img.img_file.path
-    #
     #         storage.delete(path)
-    #
     #     super().delete(*args, **kwargs)
 
 

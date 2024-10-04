@@ -158,3 +158,11 @@ def profile(request):
     user = request.user
     posts = Post.published.filter(author=user)
     return render(request, 'blog/profile.html', {'posts': posts})
+
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('blog:profile')
+    return render(request, 'forms/delete_post.html', {'post': post})
