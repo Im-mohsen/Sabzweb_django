@@ -97,13 +97,14 @@ def post_comment(request, post_id):
 
 def create_post(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.status = 'DF'
             post.save()
-            return redirect("blog:post_list")
+            Image.objects.create(image_file=form.cleaned_data['image1'], post=post)
+            Image.objects.create(image_file=form.cleaned_data['image2'], post=post)
+            return redirect("blog:profile")
     else:
         form = PostForm()
     return render(request, "forms/new_post.html", {'form': form})

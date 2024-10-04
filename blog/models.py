@@ -5,6 +5,7 @@ from django_jalali.db import models as jmodels
 from django.urls import reverse
 from django_resized import ResizedImageField
 from datetime import date
+from django.template.defaultfilters import slugify
 
 
 # Managers
@@ -56,6 +57,11 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("blog:post_detail", args=[self.id])
+
+    def save(self, *args,  **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     # way number 2 for delete image with posts
 

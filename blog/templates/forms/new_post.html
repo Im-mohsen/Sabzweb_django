@@ -3,7 +3,7 @@
 {% block content %}
     <div class="forms_page">
         <h2>ایجاد پست جدید</h2>
-        <form method="POST" class="forms_box">
+        <form method="post" enctype="multipart/form-data" class="forms_box">
             {% csrf_token %}
     {#        {{ form.as_p }}#}
             <label for="id_title">عنوان:</label>
@@ -20,6 +20,12 @@
             <br>
             <input type="number" name="reading_time" min="0" id="id_reading_time" required
                     {% if form.reading_time.value %} value="{{ form.reading_time.value }}" {% endif %}>
+            <br>
+            <label for="id_image1">تصویر اول:</label>
+            <input type="file" name="image1" accept="image/*" aria-invalid="true" id="id_image1">
+            <br>
+            <label for="id_image2">تصویر دوم:</label>
+            <input type="file" name="image2" accept="image/*" aria-invalid="true" id="id_image2">
             <br>
             <input type="submit" value="ایجاد پست" id="bt_submit">
         </form>
