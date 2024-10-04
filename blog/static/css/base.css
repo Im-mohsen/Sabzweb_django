@@ -241,3 +241,13 @@ h2{
 	flex:1 1 100%;
 	max-width: 49%;
 }
+.post_profile_table{
+    width: 60%;
+    border: 2px solid black;
+    text-align: right;
+    margin: 0 auto;
+}
+.img_profile{
+    margin: 0;
+    width: 50%;
+}

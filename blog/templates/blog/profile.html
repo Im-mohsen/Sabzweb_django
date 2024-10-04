@@ -1,0 +1,26 @@
+{% extends "parent/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <table class="post_profile_table">
+        <tr>
+            <th>ردیف</th>
+            <th>پست</th>
+            <th>عنوان پست</th>
+            <th>مشاهده</th>
+            <th>ویرایش</th>
+            <th>حذف</th>
+        </tr>
+        {% for post in posts %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="{{ post.images.first.image_file.url }}" alt="{{post.images.first.title}}" class="img_profile"></td>
+                <td>{{ post.title }}</td>
+                <td><a href="{{ post.get_absolute_url }}">مشاهده</a></td>
+                <td><a href="#">ویرایش</a></td>
+                <td><a href="#">حذف</a></td>
+            </tr>
+        {% endfor %}
+        
+
+    </table>
+{% endblock %}
