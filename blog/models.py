@@ -138,3 +138,8 @@ class Image(models.Model):
 
     def __str__(self):
         return f"title: {self.title}" if self.title else f"image_name: {self.image_file}"
+
+    # def delete(self, *args, **kwargs):
+    #     storage, path = self.image_file.storage, self.image_file.path
+    #     storage.delete(path)
+    #     super().delete(*args, **kwargs)

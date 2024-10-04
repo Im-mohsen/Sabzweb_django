@@ -27,6 +27,14 @@
             <label for="id_image2">تصویر دوم:</label>
             <input type="file" name="image2" accept="image/*" aria-invalid="true" id="id_image2">
             <br>
+            {% if post %}
+                {% for img in post.images.all %}
+                    <img style="max-width: 40%" src="{{ img.image_file.url }}" alt="{{ img.title }}">
+                    <a href="{% url 'blog:delete_image' img.id %}">حذف تصویر</a>
+                {% endfor %}
+                
+            {% endif %}
+            <br>
             <input type="submit" value="ایجاد پست" id="bt_submit">
         </form>
         {% if form.errors%}
