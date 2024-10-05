@@ -13,19 +13,19 @@
         <div>
             <p><a href="{% url 'blog:index' %}">صفحه اصلی</a></p>
         </div>
-        {% if request.user.is_authenticated %}
-            <div>
-                <p><a href="{% url 'blog:profile' %}">پروفایل</a></p>
-            </div>
-        {% else %}
-            <div>
-                <p><a href="{% url 'blog:login' %}">پروفایل</a></p>
-            </div>
-        {% endif %}
+{#        {% if request.user.is_authenticated %}#}
+        <div>
+            <p><a href="{% url 'blog:profile' %}">پروفایل</a></p>
+        </div>
+{#        {% else %}#}
+{#            <div>#}
+{#                <p><a href="{% url 'blog:login' %}">پروفایل</a></p>#}
+{#            </div>#}
+{#        {% endif %}#}
 
         {% if request.user.is_authenticated %}
             <div class="login-box">
-                <a href="{% url 'blog:profile' %}" class="login-key">{{ request.user.username }}</a>
+                <a href="{% url 'blog:profile' %}" class="login-key">{{ request.user.first_name |default:request.user.username}}</a>
             </div>
         {% else %}
             <div class="login-box">

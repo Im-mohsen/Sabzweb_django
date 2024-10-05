@@ -74,6 +74,7 @@ class SearchForm(forms.Form):
     query = forms.CharField()
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(max_length=250, required=True, label="نام کاربری")
-    password = forms.CharField(max_length=250, required=True, label="رمز عبور", widget=forms.PasswordInput)
+# way 1 to create login page
+# class LoginForm(forms.Form):
+#     username = forms.CharField(max_length=250, required=True, label="نام کاربری")
+#     password = forms.CharField(max_length=250, required=True, label="رمز عبور", widget=forms.PasswordInput)
