@@ -234,7 +234,6 @@ h2{
 	align-items: center;
 	/*flex-wrap: wrap;*/
 	overflow: auto;
-	gap: 10px;
 
 }
 .flex-item{
@@ -250,4 +249,24 @@ h2{
 .img_profile{
     margin: 0;
     width: 50%;
+}
+.header{
+	padding: 10px 15px;
+	border-radius: 7px;
+	background-color: #8dd7e5;
+}
+.container1 {
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+	justify-content: space-between;
+	align-items: center;
+	overflow: auto;
+}
+.container2{
+	display: flex;
+	margin: 0 20px;
+	align-items: center;
+	overflow: auto;
+	gap: 20px;
 }

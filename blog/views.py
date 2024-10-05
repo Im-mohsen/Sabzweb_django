@@ -8,6 +8,7 @@ from django.views.decorators.http import require_POST
 from django.db.models import Q
 # from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
+from django.contrib.auth import authenticate, login
 # Create your views here.
 import datetime
 
@@ -188,3 +189,22 @@ def edit_post(request, post_id):
     else:
         form = PostForm(instance=post)
     return render(request, "forms/new_post.html", {'form': form, 'post': post})
+
+
+def user_login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("blog:profile")
+                else:
+                    return HttpResponse("Your account is disabled.")
+            else:
+                return HttpResponse("Invalid login.")
+    else:
+        form = LoginForm()
+    return render(request, "forms/login.html", {'form': form})
