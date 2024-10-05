@@ -19,7 +19,7 @@
             {% if form.errors %}
                 <p>نام کاربری یا رمز عبور وارد شده صحیح نیست.</p>
             {% endif %}
-            <form action="#" class="login-form" method="post">
+            <form action="{% url 'blog:login' %}" class="login-form" method="post">
                 {% csrf_token %}
                 <h2 class="title">ورود به سیستم</h2>
                 <label class="labels first-h2" for="username">نام کاربری</label>
@@ -28,7 +28,6 @@
                 <input type="password" placeholder="رمز عبور" id="password" name="password" required>
                 <input type="submit" id="submit-button" value="ورود">
             </form>
-
     </div>
 </body>
 </html>
