@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "blog.apps.BlogConfig",
     'django_jalali',
     'django.contrib.postgres',
     'django_cleanup.apps.CleanupConfig',
@@ -154,3 +154,4 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = False
 LOGIN_REDIRECT_URL = '/blog/profile'
 LOGIN_URL = '/blog/login/'
 LOGOUT_URL = '/blog/logout/'
+# LOGOUT_REDIRECT_URL = LOGIN_URL

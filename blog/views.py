@@ -216,6 +216,6 @@ def edit_post(request, post_id):
 #         form = LoginForm()
 #     return render(request, "forms/login.html", {'form': form})
 
-def log_out(request):
-    logout(request)
-    return redirect(request.META.get('HTTP_REFERER'))
+# def log_out(request):
+#     logout(request)
+#     return redirect(request.META.get('HTTP_REFERER'))

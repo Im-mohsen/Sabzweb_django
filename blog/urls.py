@@ -19,6 +19,8 @@ urlpatterns = [
     path('profile/delete_image/<image_id>', views.delete_image, name="delete_image"),
     # path('login', views.user_login, name="login"),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('logout/', views.log_out, name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='registration/logged_out.html'), name='logout'),
+    # path('logout/', views.log_out, name='logout'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(success_url='done', template_name='registration/password_change_form.html'), name='password_change'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
 ]
