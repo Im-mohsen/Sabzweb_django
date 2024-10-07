@@ -92,3 +92,14 @@ class UserRegisterForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError("رمز عبورها باهم یکسان نیستند!")
         return cd['password2']
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class AccountEditForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['date_of_birth', 'bio', 'job', 'photo']

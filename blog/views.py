@@ -232,3 +232,21 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, "registration/register.html", {'form': form})
+
+
+@login_required
+def edit_account(request):
+    if request.method == "POST":
+        user_form = UserEditForm(request.POST, instance=request.user)
+        account_form = AccountEditForm(request.POST, files=request.FILES, instance=request.user.account)
+        if account_form.is_valid() and user_form.is_valid():
+            account_form.save()
+            user_form.save()
+    else:
+        user_form = UserEditForm(instance=request.user)
+        account_form = AccountEditForm(instance=request.user.account)
+    context = {
+        "account_form": account_form,
+        "user_form": user_form
+    }
+    return render(request, 'registration/edit_account.html', context)
