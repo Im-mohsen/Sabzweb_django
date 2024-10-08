@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
 from django_resized import ResizedImageField
-from datetime import date
+# from datetime import date
 from django.template.defaultfilters import slugify
 
 
@@ -25,6 +25,14 @@ class Post(models.Model):
         PUBLISHED = 'PB', 'Publish'
         REJECTED = 'RJ', 'Rejected'
 
+    CATEGORY_CHOICES = (
+        ('تکنولوژی','تکنولوژی'),
+        ('زبان برنامه نویسی','زبان برنامه نویسی'),
+        ('هوش مصنوعی','هوش مصنوعی'),
+        ('بلاکچین','بلاکچین'),
+        ('سایر','سایر')
+    )
+
     # Relations
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_posts", verbose_name="نویسنده")
     # Data fields
@@ -38,6 +46,7 @@ class Post(models.Model):
     reading_time = models.PositiveIntegerField(verbose_name="زمان مطالعه")
     # Choice fields
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT, verbose_name="وضعیت")
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, verbose_name="دسته بندی", default='سایر')
     # Default manager
     # objects = models.Manager()
     objects = jmodels.jManager()
@@ -149,7 +158,7 @@ class Account(models.Model):
     user = models.OneToOneField(User, related_name="account", on_delete=models.CASCADE)
     date_of_birth = jmodels.jDateField(verbose_name="تاریخ تولد", blank=True, null=True)
     bio = models.TextField(verbose_name="بایو", blank=True, null=True)
-    photo = ResizedImageField(upload_to="account_image/", size=[500, 500], quality=60,crop=['middle', 'center'],
+    photo = ResizedImageField(upload_to="account_image/", size=[500, 500], quality=60, crop=['middle', 'center'],
                               null=True, blank=True, verbose_name="تصویر پروفایل")
     job = models.CharField(max_length=250, verbose_name="شغل", blank=True, null=True)
 

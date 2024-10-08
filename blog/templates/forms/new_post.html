@@ -21,6 +21,16 @@
             <input type="number" name="reading_time" min="0" id="id_reading_time" required
                     {% if form.reading_time.value %} value="{{ form.reading_time.value }}" {% endif %}>
             <br>
+            <label for="category_id">دسته بندی:</label>
+            <br>
+            <select id="category_id" name="category">
+                <option value="سایر" {% if form.subject.value == 'سایر' %}selected{% endif %} >سایر</option>
+                <option value="تکنولوژی" {% if form.subject.value == 'تکنولوژی' %}selected{% endif %} >تکنولوژی</option>
+                <option value="زبان برنامه نویسی" {% if form.subject.value == 'زبان برنامه نویسی' %}selected{% endif %} >زبان برنامه نویسی</option>
+                <option value="هوش مصنوعی" {% if form.subject.value == 'هوش مصنوعی' %}selected{% endif %} >هوش مصنوعی</option>
+                <option value="بلاکچین" {% if form.subject.value == 'بلاکچین' %}selected{% endif %} >بلاکچین</option>
+            </select>
+            <br>
             <label for="id_image1">تصویر اول:</label>
             <input type="file" name="image1" accept="image/*" aria-invalid="true" id="id_image1">
             <br>

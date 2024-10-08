@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from .models import *
 from .forms import *
-# from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView, FormView
 from django.views.decorators.http import require_POST
 from django.db.models import Q
@@ -18,26 +18,30 @@ def index(request):
     return render(request, "blog/index.html")
 
 
-# def post_list(request):
-#     posts = Post.published.all()
-#     paginator = Paginator(posts, 2)
-#     page_number = request.GET.get('page', 1)
-#     try:
-#         posts = paginator.page(page_number)
-#     except EmptyPage:
-#         posts = paginator.page(paginator.num_pages)
-#     except PageNotAnInteger:
-#         posts = paginator.page(1)
-#     context = {
-#         "posts": posts,
-#     }
-#     return render(request, "blog/post_list.html", context)
+def post_list(request, category=None):
+    if category is not None:
+        posts = Post.objects.filter(category=category)
+    else:
+        posts = Post.published.all()
+    paginator = Paginator(posts, 3)
+    page_number = request.GET.get('page', 1)
+    try:
+        posts = paginator.page(page_number)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    context = {
+        "posts": posts,
+        "category": category,
+    }
+    return render(request, "blog/post_list.html", context)
 
-class PostListView(ListView):
-    queryset = Post.published.all()
-    context_object_name = "posts"
-    paginate_by = 3
-    template_name = "blog/post_list.html"
+# class PostListView(ListView):
+#     queryset = Post.published.all()
+#     context_object_name = "posts"
+#     paginate_by = 3
+#     template_name = "blog/post_list.html"
 
 
 def post_detail(request, pk):
