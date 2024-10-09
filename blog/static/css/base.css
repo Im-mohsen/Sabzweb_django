@@ -251,14 +251,13 @@ h2{
     width: 50%;
 }
 .header{
-	padding: 10px 15px;
-	border-radius: 7px;
+	padding: 30px 30px;
 	background-color: #8dd7e5;
 }
 .container1 {
 	display: flex;
-	width: 90%;
-	margin: 0 auto;
+	width: 100%;
+	margin: 0 0 20px 0 ;
 	justify-content: space-between;
 	align-items: center;
 	overflow: auto;
@@ -269,4 +268,31 @@ h2{
 	align-items: center;
 	overflow: auto;
 	gap: 20px;
+}
+.container3{
+	display: flex;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
+}
+#column_of_container3{
+	width: 80%;
+}
+.footer{
+	margin: 20px 0 0  0;
+	width: 100%;
+	background-color: #099fcd;
+	height: 100px;
+	text-align: center;
+	align-items: center;
+}
+.categories{
+	margin: 10px 20px;
+	width: 20%;
+	padding: 30px 20px;
+	border-radius: 7px;
+	background-color: #8dd7e5;
+}
+.categories h4{
+	margin: 0 0 15px 0;
 }
