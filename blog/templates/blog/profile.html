@@ -1,5 +1,8 @@
 {% extends "parent/base.html" %}
 {% block title %}Profile{% endblock %}
+{% block head %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
     <p><a href="{% url 'blog:new_post' %}">ایجاد پست جدید</a></p>
 {#    <p><a href="{% url 'blog:logout' %}">خروج</a></p>#}
@@ -17,6 +20,7 @@
             <th>مشاهده</th>
             <th>ویرایش</th>
             <th>حذف</th>
+            <th>نظرات</th>
         </tr>
         {% for post in posts %}
             <tr>
@@ -26,9 +30,12 @@
                 <td><a href="{{ post.get_absolute_url }}">مشاهده</a></td>
                 <td><a href="{% url 'blog:edit_post' post.id %}">ویرایش</a></td>
                 <td><a href="{% url 'blog:delete_post' post.id %}">حذف</a></td>
+                <td><button type="button" data-bs-toggle="modal" data-bs-target="#postModal{{ post.id }}">مشاهده نظرات</button></td>
             </tr>
+            {% include "blog/modal_comment.html" with post=post %}
+        {% empty %}
+            <p>این کاربر هیچ پستی نداارد!!</p>
         {% endfor %}
-        
-
     </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 {% endblock %}

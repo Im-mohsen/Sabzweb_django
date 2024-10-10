@@ -62,7 +62,7 @@
                     <br>
                 </div>
 
-                {{ comment.body |linebreaks |censor }}
+                {{ comment.body |linebreaks |censor |markdown}}
                 <br>
                 <hr>
             {% empty %}
