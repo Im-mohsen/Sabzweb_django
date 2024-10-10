@@ -10,12 +10,14 @@ from django.db.models import Q
 from django.contrib.postgres.search import TrigramSimilarity
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from random import choice
 # Create your views here.
 import datetime
 
 
 def index(request):
-    return render(request, "blog/index.html")
+    random_posts = choice(Post.objects.all()) if Post.objects.all() else None
+    return render(request, "blog/index.html", {'random_posts': random_posts})
 
 
 def post_list(request, category=None):
