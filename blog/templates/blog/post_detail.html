@@ -5,7 +5,7 @@
 {% block content %}
     <div class="post_box">
         <h2>Post detail</h2>
-        <h3 class="title_post">{{ post.title}} <span class="author-title">(by {{ post.author }})</span> </h3>
+        <h3 class="title_post">{{ post.title}} <a href="{% url 'blog:author_profile' post.author.username %}" class="author-title">(by {{ post.author }})</a> </h3>
         <p class="time_post">{{ post.publish |jformat:"%Y/%m/%d-%H:%M" }}</p>
         <br>
 {#            <!-- نمایش تصاویر در بخش های مختلف -->#}

@@ -254,3 +254,13 @@ def edit_account(request):
         "user_form": user_form
     }
     return render(request, 'registration/edit_account.html', context)
+
+
+def author_profile(request, username):
+    user = get_object_or_404(User, username=username, is_active=True)
+    posts = Post.published.filter(author__username=username)
+    context = {
+        "user": user,
+        "posts": posts
+    }
+    return render(request, 'blog/author_profile.html', context)

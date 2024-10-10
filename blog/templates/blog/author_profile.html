@@ -1,0 +1,42 @@
+{% extends "parent/base.html" %}
+{% load blog_tags %}
+{% block title %}Author profile{% endblock %}
+{% block content %}
+        <div class="author-Profile">
+        {% if user.first_name %}
+            <h3>{{ user.first_name }}</h3>
+        {% else %}
+            <h3>{{ user.username }}</h3>
+        {% endif %}
+        <br>
+        {% with account=user.account %}
+            {% if account.avatar %}
+                <img src="#" alt="account.avatar">
+            {% endif %}
+            <br>
+            <p><span style="font-weight: bold">توضیحات: </span>{{ account.bio }}</p>
+            <br>
+            <p><span style="font-weight: bold">شغل: </span>{{ account.job }}</p>
+            <br>
+            <p><span style="font-weight: bold">تاریخ تولد: </span>{{ account.date_of_birth }}</p>
+            <br>
+        {% endwith %}
+    </div>
+
+    <div class="posts">
+        <table>
+            <tr>
+                <th>ردیف</th>
+                <th>عنوان پست</th>
+                <th>پست</th>
+            </tr>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ post.title }}</td>
+                    <td><a href="{{ post.get_absolute_url }}">مشاهده</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

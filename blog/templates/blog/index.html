@@ -3,6 +3,7 @@
 
 {% block title %}Index Page{% endblock %}
 {% block content %}
+    <h3><a href="{% url 'blog:post_list' %}">لیست پست ها</a></h3>
     <p>آمار</p>
     <p>تعداد پست: {% total_posts %}</p>
     <p>تعداد کامنت: {% total_comments %}</p>
