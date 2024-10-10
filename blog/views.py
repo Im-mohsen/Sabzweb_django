@@ -164,8 +164,26 @@ def post_search(request):
 @login_required
 def profile(request):
     user = request.user
-    posts = Post.published.filter(author=user)
-    return render(request, 'blog/profile.html', {'posts': posts})
+    pub_posts = Post.published.filter(author=user)
+    all_posts = Post.objects.filter(author=user)
+
+    # صفحه بندی
+    paginator = Paginator(all_posts, 5)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        all_posts = paginator.page(page_number)
+    except EmptyPage:
+        all_posts = paginator.page(page_number.num_pages)
+    except PageNotAnInteger:
+        all_posts = paginator.page(1)
+
+    context = {
+        'all_posts': all_posts,
+        'pub_posts': pub_posts,
+    }
+
+    return render(request, 'blog/profile.html', context)
 
 
 @login_required
